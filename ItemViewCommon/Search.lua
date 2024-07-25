@@ -74,6 +74,12 @@ function BaganatorSearchWidgetMixin:OnLoad()
       self.SearchBox.Instructions:SetText(addonTable.Utilities.GetRandomSearchesText())
     end
   end)
+
+  self.SearchBox:HookScript("OnEnterPressed", function()
+    self.SearchBox:SetText("")
+    addonTable.CallbackRegistry:TriggerEvent("SearchTextChanged", "")
+  end)
+  
   self.SearchBox.clearButton:SetScript("OnClick", function()
     addonTable.CallbackRegistry:TriggerEvent("SearchTextChanged", "")
   end)
